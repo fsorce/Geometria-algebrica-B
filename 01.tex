@@ -1,0 +1,174 @@
+\chapter{Fasci di insiemi}
+
+\section{Fascio di germi di applicazioni}
+
+Vogliamo capire il comportamento locale di funzioni, cerchiamo allora di associare ad una funzione $f$ un oggetto che incapsuli il suo comportamento locale in un punto $P$, il suo \textbf{germe} in $P$:
+
+\begin{definition}[Germi]
+Sia $X$ spazio topologico, $Y$ insieme e fissiamo $P\in X$. La \textbf{spiga} dei \textbf{germi} in $P$ della applicazioni $f:X\to Y$ \`e
+\[(\Fc_{X,Y})_P=\frac{\cpa{(U,f)\mid U\text{ aperto di }X,\ P\in U,\ f:U\to Y}}{\sim_P}\]
+dove $(U,f)\sim_P (V,g)$ se esiste $P\in W\subseteq U\cap V$ aperto tale che $f\res W=g\res W$.
+
+Come notazione poniamo $[(U,f)]_{\sim_P}=f_P$.
+\end{definition}
+\begin{remark}
+$f_P=g_P\coimplies f=g$ su un intorno di $P$.
+\end{remark}
+
+Raccogliamo tutte le spighe in un oggetto, il fascio!
+
+\begin{definition}[Fascio dei germi di applicazioni]
+Il fascio dei germi di applicazioni da $X$ a $Y$ \`e
+\[\Fc_{X,Y}=\coprod_{P\in X}(\Fc_{X,Y})_P.\]
+\end{definition}
+
+\begin{remark}
+Abbiamo una mappa $\pi:\Fc_{X,Y}\to X$ data da $\pi(f_P)=P$ per ogni $f_P\in (\Fc_{X,Y})_P$.
+\end{remark}
+
+Cerchiamo ora di dare al fascio una topologia in modo da renderlo uno spazio.
+
+
+\begin{notation}
+Dati $U\subseteq X$ aperto e $f:U\to Y$ poniamo $\Ac_{U,f}=\bigcup_{P\in U}f_P$.
+\end{notation}
+
+\begin{remark}
+$\pi(\Ac_{U,f})=U$ e $\pi\res{\Ac_{U,f}}:\Ac_{U,f}\to U$ \`e biunivoca ($f_P\leftrightarrow P$).
+\end{remark}
+
+
+Possiamo rendere $\Fc_{X,Y}$ uno spazio topologico dichiarando che $\Ac_{U,f}$ \`e una base al variare di $U\subseteq X$ aperto e $f:U\to Y$ applicazione.
+\begin{proof}[Dimostrazione (sono una base)]
+Dobbiamo verificare che la collezione di questi insiemi copre e che \`e chiusa per intersezione
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item Se $z\in \Fc_{X,Y}$ allora $z=[(U,f)]_P$ e quindi $z\in \Ac_{U,f}$, quindi coprono.
+\item Se $\Ac_{U,f}\cap \Ac_{V,g}\neq \emptyset$ allora
+\[\Ac_{U,f}\cap \Ac_{V,g}=\Ac_{W,h}\]
+dove
+\[W=\cpa{P\in U\cap V\mid f_P=g_P},\quad h=f\res W=g\res W.\]
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{remark}
+Con questa topologia si ha che $(\Fc_{X,Y})_P$ eredita la topologia discreta e $\pi$ \`e un omeomorfismo locale surgettivo.
+\end{remark}
+
+\section{Fasci di applicazioni con pi\`u struttura}
+
+Al posto di considerare tutte le funzioni $X\to Y$ possiamo prendere funzioni con qualche propriet\`a in pi\`u, a \textit{patto che} questa propriet\`a sopravviva quando restringiamo la funzione ad un aperto del dominio.
+
+\begin{example}
+Siano $X,Y$ spazi topologici, allora possiamo costruire $\Cc^0_{X,Y}$ il fascio dei germi delle applicazioni continue da $X$ a $Y$.
+\end{example}
+
+Se $X$ e $Y$ hanno altre strutture, per esempio sono variet\`a differenziali o complesse possiamo considerare i fasci di funzioni lisce o olomorfe rispettivamente (denotati $\Cc^\infty_{X,Y}$ e $\Oc_{X,Y}$ rispettivamente).
+
+\subsection{Sezioni}
+Possiamo definire $\Gamma_F$ il fascio dei germi di sezioni di $F:Y\to X$ surgettiva con $X$ spazio topologico.
+
+\begin{definition}[Sezione]
+Data $F:Y\to X$ surgettiva, una inversa destra di $F$ definita su un aperto $U$ di $X$ si dice \textbf{sezione} di $F$.
+\end{definition}
+
+\begin{remark}
+Se $F$ ha qualche struttura possiamo considerare sezioni con struttura compatibile (per esempio continue, lisce, olomorfe).
+\end{remark}
+
+\begin{definition}[Sezione del fascio dei germi di applicazioni]
+Sia $X$ spazio topologico, $Y$ insieme e $U$ aperto di $X$, una sezione di $\Fc_{X,Y}$ su $U$ \`e una $\sigma:U\to \Fc_{X,Y}$ continua tale che $\pi\circ \sigma=id_U$.
+
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXEZjX3tYLFl9Il0sWzEsMSwiWCJdLFswLDEsIlUiXSxbMCwwLCJcXHBpXFxpaShVKSJdLFsyLDEsIlxcc3Vic2V0ZXEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwxLCJcXHBpIl0sWzMsMCwiXFxzdWJzZXRlcSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDAsIlxcc2lnbWEiXSxbMiwzXV0=
+\[\begin{tikzcd}
+	{\pi\ii(U)} & {\Fc_{X,Y}} \\
+	U & X
+	\arrow["\subseteq"{description}, draw=none, from=1-1, to=1-2]
+	\arrow["\pi", from=1-2, to=2-2]
+	\arrow[from=2-1, to=1-1]
+	\arrow["\sigma", from=2-1, to=1-2]
+	\arrow["\subseteq"{description}, draw=none, from=2-1, to=2-2]
+\end{tikzcd}\]
+
+L'insieme delle sezioni di $\Fc_{X,Y}$ su $U$ si denota $\Gamma(U,\Fc_{X,Y})$.
+\end{definition}
+
+\begin{remark}
+Se $\sigma\in \Gamma(U,\Fc_{X,Y})$ e $P\in U$ allora $\sigma(P)\in (\Fc_{X,Y})_P$, dunque $\sigma(P)=[(W_P,f^{(P)})]_{\sim_P}$.
+Sull'aperto $\Ac_{W_P,f^{(P)}}$ sappiamo che $\pi$ \`e invertibile, qundi sull'aperto $\sigma\ii(\Ac_{W_P,f^{(P)}})$ si ha
+\[\sigma=(\pi_{\Ac_{W_P,f^{(P)}}})\ii,\]
+dunque per ogni $Q\in \sigma\ii(\Ac_{W_P,f^{(P)}})$ abbiamo $\sigma(Q)=(f^{(P)})_Q$.
+\end{remark}
+
+\begin{center}
+Siamo passati dall'informazione puntuale (valore di $\sigma(P)$) ad una informazione locale (valore di $\sigma$ su un intorno di $P$).
+\end{center}
+
+
+\begin{proposition}
+Esiste una bigezione
+\[\correspDef{\Gamma(U,\Fc_{X,Y})}{\cpa{F:U\to Y}}{\sigma}{\text{incollamento dei }\sigma(P)=[(W_P,f^{(P)})]_{\sim_P}}{\sigma:P\mapsto F_P}{F}\]
+\end{proposition}
+\begin{proof}
+Costruiamo un ricoprimento aperto $\cpa{U_\al}_{\al\in I}$ di $U$ tale che per ogni $\al\in I$ esiste $f_\al:U_\al\to Y$ tale che per ogni $P\in U_\al$ si ha $\sigma(P)=(f_\al)_P$.
+
+Notiamo che se $\al,\beta\in I$ e $U_\al\cap U_\beta\neq \emptyset$ allora per ogni $Q\in U_\al\cap U_\beta$
+\[(f_\al)_Q=\sigma(Q)=(f_\beta)_Q,\]
+cio\`e $f_\al\res{U_\al\cap U_\beta}=f_\beta\res{U_\al \cap U_\beta}$.
+
+Questo ci permette di definire $F:U\to Y$ tale che $F\res{U_\al}=f_\al$ per ogni $\al\in I$. Per costruzione $F_P=\sigma(P)$ per ogni $P\in U$.
+\end{proof}
+
+\section{Definizione topologica di Fascio}
+\begin{definition}[Fascio]
+Un \textbf{fascio (di insiemi)} su $X$ spazio topologico \`e una coppia $(\Fc,\pi)$ con $\Fc$ spazio topologico e $\pi:\Fc\to X$ omeomorfismo locale surgettivo.
+
+Se $x\in X$ definiamo $\pi\ii(x)$ la \textbf{spiga} di $\Fc$ su $x$ e gli elementi di questa si chiamano \textbf{germi} di $\Fc$ su $x$.
+\end{definition}
+
+\begin{remark}
+Un rivestimento \`e un fascio.
+\end{remark}
+
+\begin{example}
+$\exp:\C\to \C^\ast$ e $\exp:\R\to S^1$ sono fasci. Le spighe si identificano con $\Z$.
+\end{example}
+
+\begin{example}
+Se $\pi:Y\to X$ rivestimento di grado $d\geq 2$ e $V\subseteq Y$ chiuso su cui $\pi$ \`e iniettiva allora
+\[\pi\res{Y\bs V}:Y\bs V\to X\]
+\`e un fascio su $X$.
+\end{example}
+
+\begin{definition}[Fascio costante]
+Se $M$ ha la topologia discreta, $\pi_1:X\times M\to X$ \`e un fascio su $X$ detto \textbf{fascio costante}. Spesso si indica con $M$.
+\end{definition}
+
+\begin{example}
+Se $x\in X$ la spiga del fascio costante $M$ si identifica con $M$.
+\end{example}
+
+\begin{definition}[Fascio grattacielo]
+Fissato $x\in M$ punto chiuso, $\Fc=\frac{X\times M}{\sim}$ con $(x_1,m_1)\sim (x_2,m_2)$ se e solo se $x_1=x_2\neq x_0$. La proiezione $\Fc\to X$ rende $\Fc$ un fascio che si chiama \textbf{fascio grattacielo a spiga $M$ e supporto $x_0$}.
+\end{definition}
+
+\begin{example}
+La spiga in $x$ di un fascio grattacielo con spiga $M$ e supporto $x_0$ \`e $\cpa{x}$ se $x\neq x_0$ e $M$ se $x=x_0$.
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
